@@ -492,7 +492,8 @@ class BoxSession(object):
                                                 json_data=False)
             total = -1
             if hasattr(req, 'headers'):
-                lower_headers = {k.lower():v for k,v in req.headers.items()}
+                # lower_headers = {k.lower():v for k,v in req.headers.items()}  #  For py2.7
+                lower_headers = dict([(k.lower():v) for k,v in req.headers.items()])  #  For py2.6
                 if 'content-length' in lower_headers:
                     total = lower_headers['content-length']
 
